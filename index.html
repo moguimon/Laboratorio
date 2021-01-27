@@ -11,8 +11,13 @@
       // ponemos a nuestro código js a la espera de que cargue nuestra página
       // con esto ejecutará la web y después ejecutará el js
       $("#enviar").click(function(){  //utilizamos el objeto jquery correspondiente para apuntar al botón enviar
-        $("#contenidos").load($("#recurso").val()); // En el contenedor contenidos cargamos la página que hay en recurso
-        return false; // para que no se cargue una página nueva, que es lo que hace por defecto la función click() 
+        $("#contenidos").load($("#recurso").val()).error(procesarError); // En el contenedor contenidos cargamos la página que hay en recurso
+        return false; // para que no se cargue una página nueva, que es lo que hace por defecto la función click()
+
+        function procesarError(){
+          var msg_error= "ERROR 404: Página no encontrada."
+          $("#contenidos").html("<p>"+ msg_error +"</p>");
+        } 
       });
 /*
       $("enlace").submit(function(){
@@ -21,7 +26,9 @@
         var datos_form={enlace:$("#enlace").val()}//Se empaqueta, es decir, se crea el literal
         otra forma de cargar los datos es usando la función serialize() que recorre todo ,o que hay en #enlace
         var datos_form=$(this).serialize();
-        $.get("index.html",datos_form,procesarDatos)// busca en el html del servidor la página index, y procesa los datos
+        // busca en el html del servidor la página index, y procesa los datos
+        $.get("index.html",datos_form,procesarDatos)
+
 
 
       });
