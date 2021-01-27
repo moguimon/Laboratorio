@@ -11,11 +11,38 @@
       // ponemos a nuestro código js a la espera de que cargue nuestra página
       // con esto ejecutará la web y después ejecutará el js
       $("#enviar").click(function(){  //utilizamos el objeto jquery correspondiente para apuntar al botón enviar
-        $("#contenidos").load($("#recurso").value); // En contenidos cargamos la web cuyo texto hay en recurso
-        return false; 
+        $("#contenidos").load($("#recurso").val()); // En el contenedor contenidos cargamos la página que hay en recurso
+        return false; // para que no se cargue una página nueva, que es lo que hace por defecto la función click() 
       });
-      
-    });
+/*
+      $("enlace").submit(function(){
+        //Se empaqueta con un literal los datos que voy a enviar al servidor, 
+        //que es la dirección de la página que quiero cargar
+        var datos_form={enlace:$("#enlace").val()}//Se empaqueta, es decir, se crea el literal
+        otra forma de cargar los datos es usando la función serialize() que recorre todo ,o que hay en #enlace
+        var datos_form=$(this).serialize();
+        $.get("index.html",datos_form,procesarDatos)// busca en el html del servidor la página index, y procesa los datos
+
+
+      });
+
+      function procesarDatos(datos_devueltos){
+        if (datos_devueltos=="autorizado"){
+
+          // modifico el DOM
+
+
+
+        }
+
+
+
+      }
+
+
+
+    });*/
+  }
   </script>
 
 <!--agregamos la libreria jquery desde un CDN 
@@ -24,10 +51,10 @@
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous">
   </script> -->
-  <script type="text/javascript" src="code.js"></script>
+  <!--<script type="text/javascript" src="code.js"></script>-->
 </head>
 <body>
-  <form action="#">
+  <form action="#" method="load" id="enlace">
     URL:
     <input value="http://www.google.es" type="text" id="recurso" size="70" />
     <!-- Ponemos la url de la página que quiero cargar-->
